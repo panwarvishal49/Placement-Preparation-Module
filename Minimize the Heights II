@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    int getMinDiff(int a[], int n, int k) {
+        sort(a,a+n);
+        int max=a[0]+k;
+        int min=a[n-1]-k;
+        int diff=a[n-1]-a[0];
+        if(min>max)
+        {
+            int temp=min;
+            min=max;
+            max=temp;
+        }
+        for (int i = 1; i < n-1; i ++)
+        {
+            int difference = a[i] - k;
+            int sum = a[i] + k;
+            if (difference >= min || sum <= max)
+                continue;
+            if (max - difference <= sum - min)
+                min = difference;
+            else
+                max = sum;
+        }
+        int x,p;
+        p=max-min;
+        if(diff>p)
+        {
+            x=p;
+        }
+        else x=diff;
+        
+        return x;
+    }
+};
